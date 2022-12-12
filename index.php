@@ -10,12 +10,15 @@
  */
 
 require_once __DIR__ . '/Models/Item.php';
+require_once __DIR__ . '/Models/Category.php';
+require_once __DIR__ . '/Models/Products.php';
 
 
+/*
+$item = new Item('Knabber Mix Original', new Category('gatto', 'https://cdn-icons-png.flaticon.com/512/616/616430.png'), 'Cibo', 'Lorem ipsum', '1.99$');
+*/
 
-$item = new Item('Knabber Mix Original', 'Gatto', 'Cibo', 'Lorem ipsum', '1.99$');
-var_dump($item->get_name());
-$item2 = new Item('Letto Basic', 'Cane', 'Cuccia', 'Lorem cuccia', '20.99$');
+$item = new Item(new Product('Cuccia', 'Lorem cuccia', 'https://shop-cdn-m.mediazs.com/bilder/letto/basic/7/400/icon_topseller_1_68__7.jpg', '4.99$'), new Category('Cane', 'https://cdn-icons-png.flaticon.com/512/616/616408.png'));
 
 // https://cdn-icons-png.flaticon.com/512/616/616408.png immagine cane
 ?>
@@ -41,32 +44,15 @@ $item2 = new Item('Letto Basic', 'Cane', 'Cuccia', 'Lorem cuccia', '20.99$');
         <div class="row">
             <div class="col-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="https://shop-cdn-m.mediazs.com/bilder/felix/party/mix/snack/per/gatti/6/400/52416_pla_felix_knabbermix_original_6.jpg" class="card-img-top" alt="...">
+                    <img src="<?php echo $item->get_product()->get_img() ?>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $item->get_name() ?></h5>
+                        <h5 class="card-title"><?php echo $item->get_product()->get_name() ?></h5>
                         <div>
-                        <?php echo $item->get_category() ?>
-                            <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" alt="">
+                        <?php echo $item->get_category()->get_name() ?>
+                            <img src="<?php echo $item->get_category()->get_icon() ?>" alt="">
                         </div>
-                        <p class="card-text"><?php echo $item->get_type() ?></p>
-                        <p class="card-text"><?php echo $item->get_description() ?></p>
-                        <p class="card-text"><?php echo $item->get_price() ?></p>
-                        <a href="#" class="btn btn-primary">Buy</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://shop-cdn-m.mediazs.com/bilder/letto/basic/7/400/icon_topseller_1_68__7.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $item2->get_name() ?></h5>
-                        <div>
-                        <?php echo $item2->get_category() ?>
-                            <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="">
-                        </div>
-                        <p class="card-text"><?php echo $item2->get_type() ?></p>
-                        <p class="card-text"><?php echo $item2->get_description() ?></p>
-                        <p class="card-text"><?php echo $item2->get_price() ?></p>
+                        <p class="card-text"><?php echo $item->get_product()->get_description() ?></p>
+                        <p class="card-text"><?php echo $item->get_product()->get_price() ?></p>
                         <a href="#" class="btn btn-primary">Buy</a>
                     </div>
                 </div>
