@@ -18,7 +18,15 @@ require_once __DIR__ . '/Models/Products.php';
 $item = new Item('Knabber Mix Original', new Category('gatto', 'https://cdn-icons-png.flaticon.com/512/616/616430.png'), 'Cibo', 'Lorem ipsum', '1.99$');
 */
 
-$item = new Item(new Product('Cuccia', 'Lorem cuccia', 'https://shop-cdn-m.mediazs.com/bilder/letto/basic/7/400/icon_topseller_1_68__7.jpg', '4.99$'), new Category('Cane', 'https://cdn-icons-png.flaticon.com/512/616/616408.png'));
+$items = [
+    $item = new Item(new Product('Cuccia', 'Lorem cuccia', 'https://shop-cdn-m.mediazs.com/bilder/letto/basic/7/400/icon_topseller_1_68__7.jpg', '20.00$'), new Category('Cane', 'https://cdn-icons-png.flaticon.com/512/616/616408.png')),
+    $item1 = new Item(new Product('Knabber Mix', 'Lorem croccantini', 'https://shop-cdn-m.mediazs.com/bilder/felix/party/mix/snack/per/gatti/6/400/52416_pla_felix_knabbermix_original_6.jpg', '4.99$'), new Category('Gatto', 'https://cdn-icons-png.flaticon.com/512/616/616430.png')),
+    $item2 = new Item(new Product('Toybrush', 'Spazzolino giocattolo per cani', 'https://cdn.shopify.com/s/files/1/0460/5653/8280/products/toybrush-lo-spazzolino-giocattolo-per-cani-613151_720x.jpg?v=1654056548', '25.99$'), new Category('Cane', 'https://cdn-icons-png.flaticon.com/512/616/616408.png')),
+    $item3 = new Item(new Product('Cuccia', 'Lorem cuccia', 'https://shop-cdn-m.mediazs.com/bilder/letto/basic/7/400/icon_topseller_1_68__7.jpg', '4.99$'), new Category('Cane', 'https://cdn-icons-png.flaticon.com/512/616/616408.png')),
+    $item4 = new Item(new Product('Cuccia', 'Lorem cuccia', 'https://shop-cdn-m.mediazs.com/bilder/letto/basic/7/400/icon_topseller_1_68__7.jpg', '4.99$'), new Category('Cane', 'https://cdn-icons-png.flaticon.com/512/616/616408.png')),
+    $item5 = new Item(new Product('Cuccia', 'Lorem cuccia', 'https://shop-cdn-m.mediazs.com/bilder/letto/basic/7/400/icon_topseller_1_68__7.jpg', '4.99$'), new Category('Cane', 'https://cdn-icons-png.flaticon.com/512/616/616408.png')),
+];
+
 
 // https://cdn-icons-png.flaticon.com/512/616/616408.png immagine cane
 ?>
@@ -42,21 +50,23 @@ $item = new Item(new Product('Cuccia', 'Lorem cuccia', 'https://shop-cdn-m.media
 <body>
     <div class="container">
         <div class="row">
+        <?php foreach ($items as $element){ ?>
             <div class="col-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="<?php echo $item->get_product()->get_img() ?>" class="card-img-top" alt="...">
+                    <img src="<?php echo $element->get_product()->get_img() ?>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $item->get_product()->get_name() ?></h5>
+                        <h5 class="card-title"><?php echo $element->get_product()->get_name() ?></h5>
                         <div>
-                        <?php echo $item->get_category()->get_name() ?>
-                            <img src="<?php echo $item->get_category()->get_icon() ?>" alt="">
+                        <?php echo $element->get_category()->get_name() ?>
+                            <img src="<?php echo $element->get_category()->get_icon() ?>" alt="">
                         </div>
-                        <p class="card-text"><?php echo $item->get_product()->get_description() ?></p>
-                        <p class="card-text"><?php echo $item->get_product()->get_price() ?></p>
+                        <p class="card-text"><?php echo $element->get_product()->get_description() ?></p>
+                        <p class="card-text"><?php echo $element->get_product()->get_price() ?></p>
                         <a href="#" class="btn btn-primary">Buy</a>
                     </div>
                 </div>
-            </div>
+            </div >
+            <?php }?>
         </div>
     </div>
 </body>
